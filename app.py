@@ -1,6 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, json, render_template
 
 app = Flask(__name__)
+API_KEYS_F = "config/keys.json"
+with open(API_KEYS_F, "r") as keys_f:
+    API_KEYS = json.load(keys_f)
 
 
 @app.route('/')
