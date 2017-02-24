@@ -20,4 +20,6 @@ function initialize() {
             motionTrackingControlOptions: {
                 position: google.maps.ControlPosition.LEFT_BOTTOM
             }
-        });
+        }
+    );
+}
