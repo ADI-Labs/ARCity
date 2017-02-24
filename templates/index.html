@@ -1,16 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-        <title>ARCity</title>
-        <!-- CSS files -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8">
+    <title>Street View side-by-side</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+       #pano {
+        float: left;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
 
-        <!-- JavaScript files -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <h1>Hello world!</h1>
-    </body>
-</html>
+  </head>
+  <body>
+   
+    <div id="map"></div>
+    <div id="pano"></div>
+   
+    <script>
+   
+    var output = document.getElementById("map");
+      function initialize() 
+      {
+
+            var fenway = {lat: 42.345573, lng: -71.098326};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: fenway,
+    zoom: 14
+  });
+  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('pano'), {
+        position: fenway,
+        pov: {
+          heading: 34,
+          pitch: 10
+        },
+
+         motionTracking: true,
+              motionTrackingControlOptions: {
+                  position: google.maps.ControlPosition.LEFT_BOTTOM
+              }
+      });
+
+  map.setStreetView(panorama);
+              
+  
+        
+      }
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaT-EHV0aiucT7tbpWkqfKwcPeei5q3l0&callback=initialize">
+    </script>
+  </body>
