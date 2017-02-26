@@ -21,13 +21,28 @@
         float: left;
         height: 100%;
         width: 100%;
+        z-index: 0;
+        position: absolute;
+
+      }
+      #search {
+
+        height:5%;
+        width: 100px;
+        background-color: red;
+        z-index: 100;
+        position: absolute;
+        left:0;
+        right:0;
+        margin: 0 auto;
       }
     </style>
   <body>
+    <div id="search"></div>
     <div id="map"></div>
     <div id="pano"></div>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key={{maps_embed_api}}&callback=initialize">
+        src="https://maps.googleapis.com/maps/api/js?key={{maps_api}}&callback=initialize">
     </script>
     <script src="../static/js/load_map.js"></script>
   </body>
