@@ -1,78 +1,75 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="utf-8" name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <title>ARCity</title>
+        <!-- CSS files -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<head>
-    <meta charset="utf-8" name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <title>ARCity</title>
-    <!-- CSS files -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- JavaScript files -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-    <!-- JavaScript files -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<style>
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+        #pano {
+            float: left;
+            height: 100%;
+            width: 100%;
+            z-index: 0;
+            position: absolute;
+        }
 
-    #pano {
-        float: left;
-        height: 100%;
-        width: 100%;
-        z-index: 0;
-        position: absolute;
-    }
+        #pac-container {
+            padding-bottom: 12px;
+            margin-right: 12px;
+        }
 
-    #pac-container {
-        padding-bottom: 12px;
-        margin-right: 12px;
-    }
+        .pac-controls {
+            display: inline-block;
+            padding: 5px 11px;
+        }
 
-    .pac-controls {
-        display: inline-block;
-        padding: 5px 11px;
-    }
+        .pac-controls label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
 
-    .pac-controls label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-    }
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 0px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 90%;
+            z-index: 1;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
 
-    #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 0px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 90%;
-        z-index: 1;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-    }
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+    </style>
+    <body>
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+        <div id="map"></div>
+        <div id="pano"></div>
 
-    #pac-input:focus {
-        border-color: #4d90fe;
-    }
-</style>
-
-<body>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
-    <div id="pano"></div>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{maps_api}}&callback=initialize">
-    </script>
-    <script src="../static/js/load_map.js"></script>
-</body>
-
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key={{maps_api}}&callback=initialize">
+        </script>
+        <script src="../static/js/load_map.js"></script>
+    </body>
 </html>
