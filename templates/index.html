@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <title>ARCity</title>
     <!-- CSS files -->
@@ -10,40 +11,68 @@
     <!-- JavaScript files -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  </head>
-    <style>
-      html, body {
+</head>
+<style>
+    html,
+    body {
         height: 100%;
         margin: 0;
         padding: 0;
-      }
-       #pano {
+    }
+
+    #pano {
         float: left;
         height: 100%;
         width: 100%;
         z-index: 0;
         position: absolute;
+    }
 
-      }
-      #search {
+    #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+    }
 
-        height:5%;
-        width: 100px;
-        background-color: red;
-        z-index: 100;
+    .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+    }
+
+    .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 0px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 90%;
+        z-index: 1;
         position: absolute;
-        left:0;
-        right:0;
+        left: 0;
+        right: 0;
         margin: 0 auto;
-      }
-    </style>
-  <body>
-    <div id="search"></div>
+    }
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+</style>
+
+<body>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
     <div id="pano"></div>
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key={{maps_api}}&callback=initialize">
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{maps_api}}&callback=initialize">
     </script>
     <script src="../static/js/load_map.js"></script>
-  </body>
+</body>
+
 </html>
