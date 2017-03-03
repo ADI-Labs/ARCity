@@ -1,15 +1,15 @@
-var output = document.getElementById("map");
+const output = document.getElementById("map");
 
 function initialize() {
-    var fenway = {
+    const fenway = {
         lat: 42.345573,
         lng: -71.098326
     };
-    var map = new google.maps.Map(document.getElementById('map'), {
+    const map = new google.maps.Map(document.getElementById('map'), {
         center: fenway,
         zoom: 14
     });
-    var panorama = new google.maps.StreetViewPanorama(
+    const panorama = new google.maps.StreetViewPanorama(
         document.getElementById('pano'), {
             position: fenway,
             pov: {
@@ -22,4 +22,10 @@ function initialize() {
             }
         }
     );
+
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
 }
