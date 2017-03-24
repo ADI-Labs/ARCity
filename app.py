@@ -6,12 +6,12 @@ API_KEYS_F = "config/keys.json"
 with open(API_KEYS_F, "r") as keys_f:
     API_KEYS = json.load(keys_f)
 
-MAPS_KEY = API_KEYS["maps_api"]
+MAPS_API = API_KEYS["maps_api"]
 
 
 @app.route('/')
 def index():
-    return render_template("index.html", maps_key=MAPS_KEY)
+    return render_template("index.html", MAPS_API=MAPS_API)
 
 
 if __name__ == "__main__":

@@ -1,17 +1,17 @@
-var output = document.getElementById("map");
+const output = document.getElementById("map");
 
 function initialize() {
-    var fenway = {
+    const fenway = {
         lat: 42.345573,
         lng: -71.098326
     };
-    var map = new google.maps.Map(document.getElementById('map'), {
+    const map = new google.maps.Map(document.getElementById('map'), {
         center: fenway,
         zoom: 14
     });
-    var panorama = new google.maps.StreetViewPanorama(
+    const panorama = new google.maps.StreetViewPanorama(
         document.getElementById('pano'), {
-            position: fenway,
+            position: map.center,
             pov: {
                 heading: 34,
                 pitch: 10
@@ -22,4 +22,42 @@ function initialize() {
             }
         }
     );
+    map.setStreetView(panorama);
+
+    // Create the search box and link it to the UI element.
+    const input = document.getElementById('pac-input');
+    panorama.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.addListener('bounds_changed', () => {
+        searchBox.setBounds(map.getBounds());
+    });
+    let markers = [];
+    searchBox.addListener('places_changed', () => {
+        const places = searchBox.getPlaces();
+        if (places.length === 0) {
+            return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+
+        places.forEach(place => {
+            if (!place.geometry) {
+                return;
+            }
+
+            const icon = {
+                url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            };
+            console.log(panorama);
+            markers.push(new google.maps.Marker({
+                map: panorama,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+            }));
+        });
+    });
 }
