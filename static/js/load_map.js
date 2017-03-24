@@ -9,6 +9,7 @@ function initialize() {
         center: fenway,
         zoom: 14
     });
+
     const panorama = new google.maps.StreetViewPanorama(
         document.getElementById('pano'), {
             position: map.center,
@@ -37,12 +38,12 @@ function initialize() {
         if (places.length === 0) {
             return;
         }
-
         // Clear out the old markers.
         markers.forEach(function(marker) {
             marker.setMap(null);
         });
-
+        markers = [];
+        // For each place, get the icon, name and location.
         places.forEach(place => {
             if (!place.geometry) {
                 return;

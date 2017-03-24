@@ -35,11 +35,6 @@
             position: absolute
         }
 
-        #pac-container {
-            padding-bottom: 12px;
-            margin-right: 12px;
-        }
-
         #pac-input {
             background-color: #fff;
             font-family: Roboto;
@@ -61,12 +56,11 @@
         }
     </style>
     <body>
-        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-        <div id="map"></div>
+        <input id="pac-input" type="text" placeholder="Search Box">
+        <div id='map'></div>
         <div id="pano"></div>
 
         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_API}}&callback=initialize&libraries=places"></script>
-
         <script src="../static/js/load_map.js"></script>
     </body>
 </html>
