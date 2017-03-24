@@ -23,20 +23,19 @@ function initialize() {
             }
         }
     );
+    map.setStreetView(panorama);
 
     // Create the search box and link it to the UI element.
     const input = document.getElementById('pac-input');
-    const searchBox = new google.maps.places.SearchBox(input);
-
-    var markers = [];
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', function() {
+    panorama.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.addListener('bounds_changed', () => {
+        searchBox.setBounds(map.getBounds());
+    });
+    let markers = [];
+    searchBox.addListener('places_changed', () => {
         const places = searchBox.getPlaces();
-
-        if (places.length == 0) {
+        if (places.length === 0) {
             return;
         }
         // Clear out the old markers.
@@ -45,28 +44,21 @@ function initialize() {
         });
         markers = [];
         // For each place, get the icon, name and location.
-        places.forEach(function(place) {
+        places.forEach(place => {
             if (!place.geometry) {
-                console.log("Returned place contains no geometry");
                 return;
             }
-            const icon = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
 
-            // Create a marker for each place.
+            const icon = {
+                url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            };
+            console.log(panorama);
             markers.push(new google.maps.Marker({
-                map: map,
+                map: panorama,
                 icon: icon,
                 title: place.name,
                 position: place.geometry.location
             }));
         });
     });
-    panorama.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
 }

@@ -19,12 +19,20 @@
             padding: 0;
         }
 
+        #map {
+            float: left;
+            height: 100%;
+            width: 0%;
+            z-index: 0;
+            position: absolute
+        }
+
         #pano {
             float: left;
             height: 100%;
             width: 100%;
             z-index: 0;
-            position: absolute;
+            position: absolute
         }
 
         #pac-input {
@@ -52,7 +60,7 @@
         <div id='map'></div>
         <div id="pano"></div>
 
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key={{maps_api}}&callback=initialize&libraries=places"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_API}}&callback=initialize&libraries=places"></script>
         <script src="../static/js/load_map.js"></script>
     </body>
 </html>
