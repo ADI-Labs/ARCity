@@ -28,33 +28,23 @@ function initialize() {
     const input = document.getElementById('pac-input');
     const searchBox = new google.maps.places.SearchBox(input);
 
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
-        searchBox.setBounds(map.getBounds());
-    });
-
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
     searchBox.addListener('places_changed', function() {
-        console.log("what the fuck");
-        console.log(searchBox.getPlaces())
         const places = searchBox.getPlaces();
 
         if (places.length == 0) {
             return;
         }
-        console.log("hello");
         // Clear out the old markers.
         markers.forEach(function(marker) {
             marker.setMap(null);
         });
         markers = [];
-        console.log("what");
         // For each place, get the icon, name and location.
-        const bounds = new google.maps.LatLngBounds();
         places.forEach(function(place) {
             if (!place.geometry) {
                 console.log("Returned place contains no geometry");
@@ -75,16 +65,7 @@ function initialize() {
                 title: place.name,
                 position: place.geometry.location
             }));
-
-            if (place.geometry.viewport) {
-                // Only geocodes have viewport.
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
         });
-        console.log(markers);
-        map.fitBounds(bounds);
     });
     panorama.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
