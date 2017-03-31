@@ -27,7 +27,7 @@ function initialize() {
 
     // Create the search box and link it to the UI element.
     const input = document.getElementById('pac-input');
-    panorama.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    panorama.controls[google.maps.ControlPosition.TOP].push(input);
     var searchBox = new google.maps.places.SearchBox(input);
     map.addListener('bounds_changed', () => {
         searchBox.setBounds(map.getBounds());
@@ -50,15 +50,19 @@ function initialize() {
             }
 
             const icon = {
-                url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                url: place.icon,
+                size: new google.maps.Size(150, 150),
+                scaledSize: new google.maps.Size(150, 150)
             };
-            console.log(panorama);
             markers.push(new google.maps.Marker({
                 map: panorama,
                 icon: icon,
                 title: place.name,
-                position: place.geometry.location
+                position: place.geometry.location,
+                size: new google.maps.Size(150, 150),
+                scaledsize: new google.maps.Size(150, 150)
             }));
         });
+        console.log(markers);
     });
 }
