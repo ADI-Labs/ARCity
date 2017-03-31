@@ -68,7 +68,7 @@ function initialize() {
                             '<a  target="_blank" href=' + place.website + '>' + place.website + '</a></p>'
             });
             nextMarker.addListener('click',() => {
-              infowindow.open(panorama,nextMarker)
+              infowindow.open(panorama, nextMarker)
             });
             markers.push(nextMarker);
 
