@@ -50,15 +50,28 @@ function initialize() {
             }
 
             const icon = {
-                url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+                url: place.icon,
+                size: new google.maps.Size(150, 150),
+                scaledSize: new google.maps.Size(150,150)
             };
             console.log(panorama);
-            markers.push(new google.maps.Marker({
+            const nextMarker = new google.maps.Marker({
                 map: panorama,
                 icon: icon,
                 title: place.name,
-                position: place.geometry.location
-            }));
+                position: place.geometry.location,
+
+            });
+            const infowindow = new google.maps.InfoWindow({
+              content: '<span style="padding: 0px; text-align:left" align="left"><h5>' + place.name + '&nbsp; &nbsp; ' + place.rating
+                            + '</h5><p>' + place.formatted_address + '<br />' + place.formatted_phone_number + '<br />' +
+                            '<a  target="_blank" href=' + place.website + '>' + place.website + '</a></p>'
+            });
+            nextMarker.addListener('click',() => {
+              infowindow.open(panorama, nextMarker)
+            });
+            markers.push(nextMarker);
+
         });
     });
 }
