@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+        <meta charset="utf-8" name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
         <title>ARCity</title>
         <!-- CSS files -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 
         <!-- JavaScript files -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+
     </head>
-    <style>
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-        #map {
-            float: left;
-            height: 100%;
-            width: 100%;
-            z-index: 0;
-            position: absolute
-        }
-
-        #pac-input {
-            background-color: #fff;
-            border-radius: 2px;
-            border: 1px solid transparent;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-            box-sizing: border-box;
-            font-family: Roboto;
-            font-size: 15px;
-            font-weight: 300;
-            height: 3%;
-            padding: 0 11px 0 13px;
-            text-overflow: ellipsis;
-            width: 50%;
-            left: 0;
-            right: 0;
-            margin: 0 auto;
-        }
-
-        #pac-input:focus {
-            border-color: #4d90fe;
-        }
-    </style>
     <body>
-        <input id="pac-input" type="text" placeholder="Search Box">
-        <div id='map'></div>
-        <div id="pano"></div>
-
+        <div id="wrapper">
+            <div class="overlay"></div>
+        
+            <!-- Sidebar -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+                <ul class="nav sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="#">
+                        ARCity
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-cog"></i> Third page</a>
+                    </li>
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Dropdown heading</li>
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                    </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="close">Close</a>
+                    </li>
+                </ul>
+            </nav><!-- /#sidebar-wrapper -->
+            <button type="button" class="hamburger open-nav is-closed animated fadeInLeft">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <input id="pac-input" type="text" placeholder="Search Box">
+            <div id="map"></div>
+        </div><!-- /#wrapper -->
         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_API}}&callback=initialize&libraries=places"></script>
-        <script src="../static/js/load_map.js"></script>
+        <script src="{{ url_for('static', filename='js/load_map.js') }}"></script>
     </body>
 </html>
