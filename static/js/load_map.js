@@ -1,16 +1,21 @@
 const output = document.getElementById("map");
 
 function initialize() {
-    const fenway = {
-        lat: 42.345573,
-        lng: -71.098326
+    const columbia = {
+        lat: 40.8078,
+        lng: -73.9641
     };
     const map = new google.maps.Map(document.getElementById('map'), {
-        center: fenway,
+        center: columbia,
         zoom: 14
     });
     const panorama = map.getStreetView();
     panorama.setOptions({
+        addressControl: false,
+        addressControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        },
+        linksControl: true,
         position: map.center,
         pov: {
             heading: 180,
@@ -53,10 +58,11 @@ function initialize() {
                 scaledSize: new google.maps.Size(150, 150)
             };
             const nextMarker = new google.maps.Marker({
-                map: panorama,
+                map: map,
                 icon: icon,
                 title: place.name,
-                position: place.geometry.location
+                position: place.geometry.location,
+                zIndez: google.maps.Marker.MAX_ZINDEX
             });
             const infowindow = new google.maps.InfoWindow({
                 content: '<span style="padding: 0px; text-align:left" align="left"><h5>${place.name}&nbsp;' +
