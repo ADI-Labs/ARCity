@@ -59,11 +59,11 @@ function initialize() {
                 position: place.geometry.location
             });
             const infowindow = new google.maps.InfoWindow({
-                content: '<span style="padding: 0px; text-align:left" align="left"><h5>${place.name}&nbsp;
-                &nbsp;${place.rating}</h5><p>${place.formatted_address}<br />${place.formatted_phone_number}<br />
-                <a  target="_blank" href=4{place.website}>${place.website}</a></p>'
+                content: '<span style="padding: 0px; text-align:left" align="left"><h5>${place.name}&nbsp;' +
+                    '&nbsp;${place.rating}</h5><p>${place.formatted_address}<br />${place.formatted_phone_number}<br />' +
+                    '<a target="_blank" href=${place.website}>${place.website}</a></p>'
             });
-            nextMarker.addListener('click',() => {
+            nextMarker.addListener('click', () => {
                 infowindow.open(panorama, nextMarker);
             });
             markers.push(nextMarker);
