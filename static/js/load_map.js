@@ -1,5 +1,5 @@
 const output = document.getElementById("map");
-
+let markers = [];
 function initialize() {
     const columbia = {
         lat: 40.8078,
@@ -35,7 +35,7 @@ function initialize() {
     map.addListener('bounds_changed', () => {
         searchBox.setBounds(map.getBounds());
     });
-    let markers = [];
+
     searchBox.addListener('places_changed', () => {
         const places = searchBox.getPlaces();
         if (places.length === 0) {
@@ -74,5 +74,71 @@ function initialize() {
             });
             markers.push(nextMarker);
         });
+    });
+    const PlaceService = new google.maps.places.PlacesService(map);
+
+    const div = document.getElementById('Stores');
+    function getLocation() {
+        if (navigator.geolocation) {
+            return navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    }
+    function callback(results,status){
+      if(status ==google.maps.places.PlacesServiceStatus.OK){
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+        for(var i = 0; i<results.length; i++){
+          const place = results[i];
+          const icon = {
+              url: place.icon,
+              size: new google.maps.Size(150, 150),
+              scaledSize: new google.maps.Size(150, 150)
+          };
+          const tempMarker = new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location,
+              zIndez: google.maps.Marker.MAX_ZINDEX
+          });
+          const infowindow = new google.maps.InfoWindow({
+              content: '<span style="padding: 0px; text-align:left" align="left"><h5>${place.name}&nbsp;' +
+                  '&nbsp;${place.rating}</h5><p>${place.formatted_address}<br />${place.formatted_phone_number}<br />' +
+                  '<a target="_blank" href=${place.website}>${place.website}</a></p>'
+          });
+          tempMarker.addListener('click', () => {
+              infowindow.open(panorama, tempMarker);
+          });
+          markers.push(tempMarker);
+          console.log("added mark");
+          console.log(tempMarker);
+        }
+      }
+      console.log("callback was called"+google.maps.places.PlacesServiceStatus.OK);
+    }
+
+    div.addEventListener('click', function (event) {
+      console.log('Hi!');
+      const request = {
+        location: columbia,
+          //{lat: getLocation().coords.latitude,
+          //lng: getLocation().coords.longitude,}
+
+        radius: '100',
+        types: ['store']
+      };
+      PlaceService.nearbySearch(request, callback);
+    });
+    const div2 = document.getElementById('Restaurants');
+    div2.addEventListener('click', function (event) {
+      console.log('HiAAAAA!');
     });
 }
