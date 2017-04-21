@@ -1,5 +1,5 @@
-const output = document.getElementById("map");
 let markers = [];
+
 function initialize() {
     const columbia = {
         lat: 40.8078,
@@ -9,6 +9,7 @@ function initialize() {
         center: columbia,
         zoom: 14
     });
+    const placeService = new google.maps.places.PlacesService(map);
     const panorama = map.getStreetView();
     panorama.setOptions({
         addressControl: false,
@@ -42,7 +43,7 @@ function initialize() {
             return;
         }
         // Clear out the old markers.
-        markers.forEach(function(marker) {
+        markers.forEach(marker => {
             marker.setMap(null);
         });
         markers = [];
@@ -75,9 +76,8 @@ function initialize() {
             markers.push(nextMarker);
         });
     });
-    const PlaceService = new google.maps.places.PlacesService(map);
 
-    const div = document.getElementById('Stores');
+    const stores = document.getElementById('Stores');
     function getLocation() {
         if (navigator.geolocation) {
             return navigator.geolocation.getCurrentPosition(showPosition);
@@ -85,18 +85,20 @@ function initialize() {
             x.innerHTML = "Geolocation is not supported by this browser.";
         }
     }
+
     function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
     }
-    function callback(results,status){
-      if(status ==google.maps.places.PlacesServiceStatus.OK){
-        markers.forEach(function(marker) {
+
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK){
+        markers.forEach(marker => {
             marker.setMap(null);
         });
         markers = [];
-        for(var i = 0; i<results.length; i++){
-          const place = results[i];
+        results.forEach(result => {
+          const place = result;
           const icon = {
               url: place.icon,
               size: new google.maps.Size(150, 150),
@@ -118,27 +120,16 @@ function initialize() {
               infowindow.open(panorama, tempMarker);
           });
           markers.push(tempMarker);
-          console.log("added mark");
-          console.log(tempMarker);
         }
       }
-      console.log("callback was called"+google.maps.places.PlacesServiceStatus.OK);
     }
 
-    div.addEventListener('click', function (event) {
-      console.log('Hi!');
+    stores.addEventListener('click', event => {
       const request = {
         location: columbia,
-          //{lat: getLocation().coords.latitude,
-          //lng: getLocation().coords.longitude,}
-
         radius: '100',
         types: ['store']
       };
-      PlaceService.nearbySearch(request, callback);
-    });
-    const div2 = document.getElementById('Restaurants');
-    div2.addEventListener('click', function (event) {
-      console.log('HiAAAAA!');
+      placeService.nearbySearch(request, callback);
     });
 }
