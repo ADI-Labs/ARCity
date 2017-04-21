@@ -92,7 +92,7 @@ function initialize() {
     }
 
     function callback(results, status) {
-      if (status == google.maps.places.PlacesServiceStatus.OK){
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
         markers.forEach(marker => {
             marker.setMap(null);
         });
@@ -120,7 +120,7 @@ function initialize() {
               infowindow.open(panorama, tempMarker);
           });
           markers.push(tempMarker);
-        }
+        });
       }
     }
 
