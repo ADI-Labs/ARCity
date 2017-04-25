@@ -63,7 +63,7 @@ function initialize() {
       scaledSize: new google.maps.Size(150, 150)
     };
     const marker = new google.maps.Marker({
-      map: map,
+      map: panorama,
       icon: icon,
       title: place.name,
       position: place.geometry.location,
