@@ -1,0 +1,18 @@
+{
+  "node"          : true,
+  "indent"        : 2,
+  "latedef"       : true,
+  "noempty"       : false,
+  "quotmark"      : "double",
+  "unused"        : true,
+  "strict"        : true,
+  "maxlen"        : 120,
+  "esversion"     : 6,
+  "camelcase"     : false,
+  "globals": {
+    "navigator"   : true,
+    "document"    : true,
+    "google"      : true,
+    "alert"       : true
+  }
+}
