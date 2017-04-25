@@ -2,6 +2,11 @@
 
 /* exported initialize */
 
+const SEARCH_TYPES = [
+  ["Stores", "store"],
+  ["Restaurants", "restaurant"]
+];
+
 function getLocation() {
   if (navigator.geolocation) {
     return navigator.geolocation.getCurrentPosition(position => {
@@ -18,13 +23,13 @@ function getLocation() {
 function initialize() {
   let markers = [];
 
-  const columbia = {
+  /* Currently set as Columbia University */
+  const CURRENT_LOCATION = {
     lat: 40.8078,
     lng: -73.9641
   };
-  const stores = document.getElementById("Stores");
   const map = new google.maps.Map(document.getElementById("map"), {
-    center: columbia,
+    center: CURRENT_LOCATION,
     zoom: 14
   });
   const placeService = new google.maps.places.PlacesService(map);
@@ -112,20 +117,24 @@ function initialize() {
       marker.setMap(null);
     });
     markers = [];
-    // For each place, get the icon, name and location.
     places.forEach(place => {
       renderMarker(place, markers);
     });
   });
 
+  SEARCH_TYPES.forEach(labelTypePair => {
+    const label = labelTypePair[0];
+    const searchType = labelTypePair[1];
+    const div = document.getElementById(label);
 
-  stores.addEventListener("click", () => {
-    const request = {
-      location: columbia,
-      radius: "100",
-      types: ["store"]
-    };
+    div.addEventListener("click", () => {
+      const request = {
+        location: CURRENT_LOCATION,
+        radius: "100",
+        type: searchType
+      }
 
-    renderNearbySearch(request);
+      renderNearbySearch(request);
+    });
   });
 }
