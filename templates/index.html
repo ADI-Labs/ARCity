@@ -38,8 +38,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Categories <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><div id="Stores"><a href="#">Stores</a></div></li>
-                            <li><div id="Restaurants"><a href="#">Restaurants</a></div></li>
+                            {% for type_label, type in SEARCH_TYPES %}
+                                <li><div id="{{ type_label }}"><a href="#">{{ type_label }}</a></div></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </ul>
@@ -52,6 +53,9 @@
             <input id="pac-input" type="text" placeholder="Search Box">
             <div id="map"></div>
         </div><!-- /#wrapper -->
+        <script>
+            const SEARCH_TYPES = {{ SEARCH_TYPES|tojson|safe }};
+        </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{MAPS_API}}&callback=initialize&libraries=places"></script>
         <script src="{{ url_for('static', filename='js/load_map.js') }}"></script>
     </body>

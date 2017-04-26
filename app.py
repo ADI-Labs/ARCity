@@ -8,10 +8,16 @@ with open(API_KEYS_F, "r") as keys_f:
 
 MAPS_API = API_KEYS["maps_api"]
 
+SEARCH_TYPES = [
+    ("Restaurants", "restaurant"),
+    ("Stores", "store")
+]
+
 
 @app.route('/')
 def index():
-    return render_template("index.html", MAPS_API=MAPS_API)
+    return render_template("index.html", MAPS_API=MAPS_API,
+                           SEARCH_TYPES=SEARCH_TYPES)
 
 
 if __name__ == "__main__":
