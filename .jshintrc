@@ -13,6 +13,7 @@
     "navigator"   : true,
     "document"    : true,
     "google"      : true,
-    "alert"       : true
+    "alert"       : true,
+    "SEARCH_TYPES": true
   }
 }

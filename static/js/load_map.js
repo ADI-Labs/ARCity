@@ -1,12 +1,6 @@
 "use strict";
 
 /* exported initialize */
-
-const SEARCH_TYPES = [
-  ["Stores", "store"],
-  ["Restaurants", "restaurant"]
-];
-
 function getLocation() {
   if (navigator.geolocation) {
     return navigator.geolocation.getCurrentPosition(position => {
@@ -132,7 +126,7 @@ function initialize() {
         location: CURRENT_LOCATION,
         radius: "100",
         type: searchType
-      }
+      };
 
       renderNearbySearch(request);
     });
