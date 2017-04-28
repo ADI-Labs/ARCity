@@ -33,7 +33,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Search By Category <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             {% for type_label, type, icon in SEARCH_TYPES %}
-                                <li><div id="{{ type_label }}"><a href="#"><i class="fa fa-fw {{icon}}"></i> {{ type_label }}</a></div></li>
+                                <li><div id="{{ type_label }}" class="category-search"><a href="#"><i class="fa fa-fw {{icon}}"></i> {{ type_label }}</a></div></li>
                             {% endfor %}
                         </ul>
                     </li>
