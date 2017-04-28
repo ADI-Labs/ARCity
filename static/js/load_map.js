@@ -34,11 +34,7 @@ function initialize() {
       position: google.maps.ControlPosition.LEFT_CENTER
     },
     linksControl: true,
-    position: map.center,
-    pov: {
-      heading: 180,
-      pitch: 0
-    },
+    position: map.getCenter(),
     visible: true,
     motionTracking: true,
     motionTrackingControlOptions: {
@@ -66,7 +62,6 @@ function initialize() {
       icon: icon,
       title: place.name,
       position: place.geometry.location,
-      zIndez: google.maps.Marker.MAX_ZINDEX
     });
 
     const rating = (place.rating === undefined) ? "N/A" : place.rating;
@@ -81,7 +76,9 @@ function initialize() {
         `Website: <a target="_blank" ${target}>${website}</a></p>`
     });
     marker.addListener("click", () => {
-      infoWindow.open(panorama, marker);
+      if (!infoWindow.getMap()) {
+        infoWindow.open(panorama, marker);
+      }
     });
     markers.push(marker);
   }
