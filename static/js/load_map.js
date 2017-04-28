@@ -68,16 +68,21 @@ function initialize() {
       position: place.geometry.location,
       zIndez: google.maps.Marker.MAX_ZINDEX
     });
-    const infoWindow = new google.maps.InfoWindow({
-      content: `<span style="padding: 0px; text-align:left" align="left"><h5>${place.name}&nbsp;` +
-        `&nbsp;${place.rating}</h5><p>${place.formatted_address}<br />${place.formatted_phone_number}<br />` +
-        `<a target="_blank" href=${place.website}>${place.website}</a></p>`
-    });
 
+    const rating = (place.rating === undefined) ? "N/A" : place.rating;
+    const formatted_address = (place.formatted_address === undefined) ? "N/A" : place.formatted_address;
+    const formatted_phone_number = (place.formatted_phone_number === undefined) ? "N/A" : place.formatted_phone_number;
+    const target = (place.website === undefined) ? "" : `href=${place.website}`;
+    const website = (place.website === undefined) ? "N/A" : place.website;
+
+    const infoWindow = new google.maps.InfoWindow({
+      content: `<span style="padding: 0px; text-align:left" align="left"><h5>${place.name}` +
+        `</h5><p>Rating: ${rating}<br>Address: ${formatted_address}<br>Phone: ${formatted_phone_number}<br>` +
+        `Website: <a target="_blank" ${target}>${website}</a></p>`
+    });
     marker.addListener("click", () => {
       infoWindow.open(panorama, marker);
     });
-
     markers.push(marker);
   }
 
