@@ -14,7 +14,8 @@ MAPS_API = API_KEYS["maps_api"]
 #  Font Awesome icon label)
 SEARCH_TYPES = [
     ("Restaurants", "restaurant", "fa-cutlery"),
-    ("Stores", "store", "fa-shopping-bag")
+    ("Stores", "store", "fa-shopping-bag"),
+    ("Subway Stations", "subway_station", "fa-subway")
 ]
 
 

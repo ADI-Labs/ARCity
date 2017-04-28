@@ -2,8 +2,7 @@ $(document).ready(() => {
     const open = $('.open-nav');
     const close = $('.close');
     const overlay = $('.overlay');
-    const stores = $('#Stores');
-    const restaurants = $('#Restaurants');
+    const categorySearch = $('.category-search');
 
     function closeMenu() {
         overlay.hide();
@@ -16,6 +15,5 @@ $(document).ready(() => {
     });
 
     close.click(closeMenu);
-    stores.click(closeMenu);
-    restaurants.click(closeMenu);
+    categorySearch.click(closeMenu);
 });
