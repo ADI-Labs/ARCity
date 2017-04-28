@@ -8,9 +8,13 @@ with open(API_KEYS_F, "r") as keys_f:
 
 MAPS_API = API_KEYS["maps_api"]
 
+# Tuples stored are of the following format:
+# (Cateygory search label,
+#  Google Places API search type,
+#  Font Awesome icon label)
 SEARCH_TYPES = [
-    ("Restaurants", "restaurant"),
-    ("Stores", "store")
+    ("Restaurants", "restaurant", "fa-cutlery"),
+    ("Stores", "store", "fa-shopping-bag")
 ]
 
 

@@ -116,9 +116,9 @@ function initialize() {
     });
   });
 
-  SEARCH_TYPES.forEach(labelTypePair => {
-    const label = labelTypePair[0];
-    const searchType = labelTypePair[1];
+  SEARCH_TYPES.forEach(searchTypeInfo => {
+    const label = searchTypeInfo[0];
+    const searchType = searchTypeInfo[1];
     const div = document.getElementById(label);
 
     div.addEventListener("click", () => {
